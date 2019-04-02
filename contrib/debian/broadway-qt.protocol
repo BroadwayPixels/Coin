@@ -1,0 +1,11 @@
+[Protocol]
+exec=broadway-qt '%u'
+protocol=broadway
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

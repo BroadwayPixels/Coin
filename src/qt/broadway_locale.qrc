@@ -1,0 +1,21 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/broadway_bg.qm</file>
+        <file alias="de">locale/broadway_de.qm</file>
+        <file alias="en">locale/broadway_en.qm</file>
+        <file alias="es">locale/broadway_es.qm</file>
+        <file alias="fi">locale/broadway_fi.qm</file>
+        <file alias="fr">locale/broadway_fr.qm</file>
+        <file alias="it">locale/broadway_it.qm</file>
+        <file alias="ja">locale/broadway_ja.qm</file>
+        <file alias="nl">locale/broadway_nl.qm</file>
+        <file alias="pl">locale/broadway_pl.qm</file>
+        <file alias="pt">locale/broadway_pt.qm</file>
+        <file alias="ru">locale/broadway_ru.qm</file>
+        <file alias="sk">locale/broadway_sk.qm</file>
+        <file alias="sv">locale/broadway_sv.qm</file>
+        <file alias="vi">locale/broadway_vi.qm</file>
+        <file alias="zh_CN">locale/broadway_zh_CN.qm</file>
+        <file alias="zh_TW">locale/broadway_zh_TW.qm</file>
+    </qresource>
+</RCC>

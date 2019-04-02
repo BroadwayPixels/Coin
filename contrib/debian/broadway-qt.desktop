@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Broadway Core
+Comment=Broadway P2P Cryptocurrency
+Comment[de]=Verbinde mit dem Broadway peer-to-peer Netzwerk
+Comment[fr]=Broadway, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Broadway, eşten eşe kriptografik sanal para birimi
+Exec=broadway-qt %u
+Terminal=false
+Type=Application
+Icon=broadway128
+MimeType=x-scheme-handler/broadway;
+Categories=Office;Finance;

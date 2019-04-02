@@ -1,0 +1,6 @@
+usr/local/bin/broadway-qt usr/bin
+share/pixmaps/broadway32.xpm usr/share/pixmaps
+share/pixmaps/broadway16.xpm usr/share/pixmaps
+share/pixmaps/broadway128.png usr/share/pixmaps
+debian/broadway-qt.desktop usr/share/applications
+debian/broadway-qt.protocol usr/share/kde4/services/
