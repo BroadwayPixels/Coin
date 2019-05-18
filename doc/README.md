@@ -1,7 +1,7 @@
 Broadway Core 0.12.1
 =====================
 
-This is the official reference wallet for Broadway digital currency and comprises the backbone of the Broadway peer-to-peer network. You can [download Broadway Core](https://www.broadway.org/downloads/) or [build it yourself](#building) using the guides below.
+This is the official reference wallet for Broadway digital currency and comprises the backbone of the Broadway peer-to-peer network. You can [download Broadway Core](https://github.com/BroadwayPixels/Coin/releases) or [build it yourself](#building) using the guides below.
 
 Running
 ---------------------
