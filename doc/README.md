@@ -26,8 +26,8 @@ Drag Broadway-Qt to your applications folder, and then run Broadway-Qt.
 
 * See the [Broadway documentation](https://dashpay.atlassian.net/wiki/display/DOC)
 for help and more information.
-* Ask for help on [Broadway Nation Discord](http://broadwaychat.org)
-* Ask for help on the [Broadway Forum](https://broadway.org/forum)
+* Ask for help on [Broadway Coin Discord](https://discord.gg/QFgyYyb)
+* Ask for help on the [Broadway Coin Website](https://coin.broadwaypixels.com).
 
 Building
 ---------------------
