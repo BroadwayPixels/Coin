@@ -3654,8 +3654,8 @@ https://www.transifex.com/projects/p/broadway/</translation>
         <translation>Aviso: Por favor verifique que a data e a hora do computador está correcta! Se o relógio estiver errado o Broadway Core não vai funcionar correctamente.</translation>
     </message>
     <message>
-        <source>(7672 could be used only on mainnet)</source>
-        <translation>(7672 apenas pode ser usado para mainnet)</translation>
+        <source>(10168 could be used only on mainnet)</source>
+        <translation>(10168 apenas pode ser usado para mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4064,8 +4064,8 @@ https://www.transifex.com/projects/p/broadway/</translation>
         <translation>masternodeprivkey inválida. Por favor reveja a documentação.</translation>
     </message>
     <message>
-        <source>(must be 7672 for mainnet)</source>
-        <translation>(deve ser 7672 para mainnet)</translation>
+        <source>(must be 10168 for mainnet)</source>
+        <translation>(deve ser 10168 para mainnet)</translation>
     </message>
     <message>
         <source>Can't find random Masternode.</source>

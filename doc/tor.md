@@ -52,11 +52,11 @@ reachable from the Tor network. Add these lines to your /etc/tor/torrc (or equiv
 config file):
 
 	HiddenServiceDir /var/lib/tor/broadwaycore-service/
-	HiddenServicePort 7672 127.0.0.1:7672
-	HiddenServicePort 17672 127.0.0.1:17672
+	HiddenServicePort 10168 127.0.0.1:10168
+	HiddenServicePort 20168 127.0.0.1:20168
 
 The directory can be different of course, but (both) port numbers should be equal to
-your broadwayd's P2P listen port (7672 by default).
+your broadwayd's P2P listen port (10168 by default).
 
 	-externalip=X   You can tell Broadway Core about its publicly reachable address using
 	                this option, and this can be a .onion address. Given the above
@@ -91,7 +91,7 @@ as well, use `discover` instead:
 
 	./broadwayd ... -discover
 
-and open port 7672 on your firewall (or use -upnp).
+and open port 10168 on your firewall (or use -upnp).
 
 If you only want to use Tor to reach onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:

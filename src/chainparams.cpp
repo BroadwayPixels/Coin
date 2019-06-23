@@ -70,7 +70,7 @@ static CBlock CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::
  * transaction cannot be spent since it did not originally exist in the
  * database.
  *
- * CBlock(hash=00000ffd590b14, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=e0028e, nTime=1554124217, nBits=1e0ffff0, nNonce=3141318, vtx=1)
+ * CBlock(hash=00000ffd590b14, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=e0028e, nTime=1561308309, nBits=1e0ffff0, nNonce=795937, vtx=1)
  *   CTransaction(hash=e0028e, ver=1, vin.size=1, vout.size=1, nLockTime=0)
  *     CTxIn(COutPoint(000000, -1), coinbase 04ffff001d01044c5957697265642030392f4a616e2f3230313420546865204772616e64204578706572696d656e7420476f6573204c6976653a204f76657273746f636b2e636f6d204973204e6f7720416363657074696e6720426974636f696e73)
  *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
@@ -78,8 +78,8 @@ static CBlock CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "1st April 2019 Broadway Coin started ";
-    const CScript genesisOutputScript = CScript() << ParseHex("04731eb8ade26c998dd5ec84b9b680f06c5f45d23a72bbf457fbffcc2829eb99d44af959c22ffc745252caa4c23ed60e16591c71d06ed2eaed2d4859b34b9cbc22") << OP_CHECKSIG;
+    const char* pszTimestamp = "1561255929";
+    const CScript genesisOutputScript = CScript() << ParseHex("041df20f1f8f75f410429b2bbf08364f34ca439ccbc8f672a1fdf44d1686ac13e1e81d3ee3eba42c914384a6e551192586a218732675389b90351898bc0bd21e90") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -123,7 +123,7 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 150000; 
+        consensus.nSubsidyHalvingInterval = 210000; 
         consensus.nMasternodePaymentsStartBlock = 10; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 158000; // actual historical value
         consensus.nMasternodePaymentsIncreasePeriod = 576*30; // 17280 - actual historical value
@@ -137,9 +137,9 @@ public:
         consensus.nSuperblockCycle = 16616; // ~(60*24*30)/2.6, actual number of blocks per month is 200700 / 12 = 16725
         consensus.nGovernanceMinQuorum = 10;
         consensus.nGovernanceFilterElements = 20000;
-        consensus.nMasternodeMinimumConfirmations = 10;
+        consensus.nMasternodeMinimumConfirmations = 15;
         consensus.BIP34Height = 0;
-        consensus.BIP34Hash = uint256S("0x00000f09bf51abfe0d5f472809e174d3a1eb92834e9e3fc28083c0dc8a2d7fe8");
+        consensus.BIP34Hash = uint256S("0x00000224c0be73942a355e18aece164de39b878cdec4c9911e6b936cb753b1ef");
         consensus.BIP65Height = 0; 
         consensus.BIP66Height = 0; 
         consensus.DIP0001Height = 0;
@@ -179,22 +179,22 @@ public:
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000200011"); 
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00000f09bf51abfe0d5f472809e174d3a1eb92834e9e3fc28083c0dc8a2d7fe8"); 
+        consensus.defaultAssumeValid = uint256S("0x00000224c0be73942a355e18aece164de39b878cdec4c9911e6b936cb753b1ef"); 
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xaa;
-        pchMessageStart[1] = 0xae;
-        pchMessageStart[2] = 0x4b;
-        pchMessageStart[3] = 0xe6;
+        pchMessageStart[0] = 0x97;
+        pchMessageStart[1] = 0x6e;
+        pchMessageStart[2] = 0x92;
+        pchMessageStart[3] = 0x8e;
         vAlertPubKey = ParseHex("048240a8748a80a286b270ba126705ced4f2ce5a7847b3610ea3c06513150dade2a8512ed5ea86320824683fc0818f0ac019214973e677acd1244f6d0571fc5103");
-        nDefaultPort = 7672;
+        nDefaultPort = 10168;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1554124217, 3141318, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1561308309, 795937, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         // calculate main genesis block
         //consensus.hashGenesisBlock = uint256S("0x00");
@@ -217,15 +217,15 @@ public:
             std::cout << "blockhash: " << genesis.GetHash().ToString().c_str() << "\n";
             std::cout << "merklehash: " << genesis.hashMerkleRoot.ToString().c_str() << "\n";
         }
-        assert(consensus.hashGenesisBlock == uint256S("0x00000f09bf51abfe0d5f472809e174d3a1eb92834e9e3fc28083c0dc8a2d7fe8"));
-        assert(genesis.hashMerkleRoot == uint256S("0xc608ec63d437019e8351b971ff470ef8a175d56da1946f355bd7703c8dbf179b"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000224c0be73942a355e18aece164de39b878cdec4c9911e6b936cb753b1ef"));
+        assert(genesis.hashMerkleRoot == uint256S("0x14f165adae3d37a09df224cf8323f546a3cc0946b06fd4428eed77fcc2dfd910"));
 
 
         vSeeds.push_back(CDNSSeedData("walletbuilders.com", "node1.walletbuilders.com"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,25);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,26);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,153);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,0);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,1);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
         // Broadway BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         // Broadway BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
@@ -246,15 +246,15 @@ public:
         nPoolMaxTransactions = 3;
         nFulfilledRequestExpireTime = 60*60; // fulfilled requests expire in 1 hour
 
-        strSporkAddress = "BNUHE9QyVaBhmmdi8iPo2B7wzNPnjRJ2ef";
+        strSporkAddress = "1NPLKypsUuPvszrDnkfHeM1egwmK7jKXRc";
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (  0, uint256S("0x00000f09bf51abfe0d5f472809e174d3a1eb92834e9e3fc28083c0dc8a2d7fe8"))
+            (  0, uint256S("0x00000224c0be73942a355e18aece164de39b878cdec4c9911e6b936cb753b1ef"))
         };
 
         chainTxData = ChainTxData{
-            1554124217, // * UNIX timestamp of last known number of transactions
+            1561308309, // * UNIX timestamp of last known number of transactions
             0,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0         // * estimated number of transactions per second after that timestamp
@@ -270,7 +270,7 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        consensus.nSubsidyHalvingInterval = 150000;
+        consensus.nSubsidyHalvingInterval = 210000;
         consensus.nMasternodePaymentsStartBlock = 4010; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 4030;
         consensus.nMasternodePaymentsIncreasePeriod = 10;
@@ -286,7 +286,7 @@ public:
         consensus.nGovernanceFilterElements = 500;
         consensus.nMasternodeMinimumConfirmations = 1;
         consensus.BIP34Height = 0;
-        consensus.BIP34Hash = uint256S("0x000002ef6f3895aede213a59c9a14012a30210ad3fe65ceed22a3d17f6f700eb");
+        consensus.BIP34Hash = uint256S("0x0000015cc990ef610297d72845df0fd9e31ff25df2fdfc1e8577da8329cdde5a");
         consensus.BIP65Height = 0; 
         consensus.BIP66Height = 0; 
         consensus.DIP0001Height = 0;
@@ -326,17 +326,17 @@ public:
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000200011"); 
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x000002ef6f3895aede213a59c9a14012a30210ad3fe65ceed22a3d17f6f700eb"); 
+        consensus.defaultAssumeValid = uint256S("0x0000015cc990ef610297d72845df0fd9e31ff25df2fdfc1e8577da8329cdde5a"); 
 
-        pchMessageStart[0] = 0xfd;
-        pchMessageStart[1] = 0xcf;
-        pchMessageStart[2] = 0xf3;
-        pchMessageStart[3] = 0x2f;
+        pchMessageStart[0] = 0x53;
+        pchMessageStart[1] = 0x92;
+        pchMessageStart[2] = 0x1c;
+        pchMessageStart[3] = 0x0f;
         vAlertPubKey = ParseHex("04517d8a699cb43d3938d7b24faaff7cda448ca4ea267723ba614784de661949bf632d6304316b244646dea079735b9a6fc4af804efb4752075b9fe2245e14e412");
-        nDefaultPort = 17672;
+        nDefaultPort = 20168;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1554124222UL, 1255865UL, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1561308314UL, 1231361UL, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         // calculate testnet genesis block
         //consensus.hashGenesisBlock = uint256S("0x00");
@@ -359,16 +359,16 @@ public:
             std::cout << "blockhash: " << genesis.GetHash().ToString().c_str() << "\n";
             std::cout << "merklehash: " << genesis.hashMerkleRoot.ToString().c_str() << "\n";
         }
-        assert(consensus.hashGenesisBlock == uint256S("0x000002ef6f3895aede213a59c9a14012a30210ad3fe65ceed22a3d17f6f700eb"));
-        assert(genesis.hashMerkleRoot == uint256S("0xc608ec63d437019e8351b971ff470ef8a175d56da1946f355bd7703c8dbf179b"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000015cc990ef610297d72845df0fd9e31ff25df2fdfc1e8577da8329cdde5a"));
+        assert(genesis.hashMerkleRoot == uint256S("0x14f165adae3d37a09df224cf8323f546a3cc0946b06fd4428eed77fcc2dfd910"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,65);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,66);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,50);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,51);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,193);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,178);
         // Testnet Broadway BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
         // Testnet Broadway BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
@@ -387,15 +387,15 @@ public:
         nPoolMaxTransactions = 3;
         nFulfilledRequestExpireTime = 5*60; // fulfilled requests expire in 5 minutes
 
-        strSporkAddress = "TMKN7G3cFb3cdp5UoaY1SDMXREJkTcZbeH";
+        strSporkAddress = "M8u6ztNcrJEuFb72PFtX15D6YMiGkToQmy";
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (    0, uint256S("0x000002ef6f3895aede213a59c9a14012a30210ad3fe65ceed22a3d17f6f700eb"))
+            (    0, uint256S("0x0000015cc990ef610297d72845df0fd9e31ff25df2fdfc1e8577da8329cdde5a"))
         };
 
         chainTxData = ChainTxData{        
-            1554124222, // * UNIX timestamp of last known number of transactions
+            1561308314, // * UNIX timestamp of last known number of transactions
             0,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0        // * estimated number of transactions per second after that timestamp
@@ -412,7 +412,7 @@ class CDevNetParams : public CChainParams {
 public:
     CDevNetParams() {
         strNetworkID = "dev";
-        consensus.nSubsidyHalvingInterval = 150000;
+        consensus.nSubsidyHalvingInterval = 210000;
         consensus.nMasternodePaymentsStartBlock = 4010; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 4030;
         consensus.nMasternodePaymentsIncreasePeriod = 10;
@@ -469,15 +469,15 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x000000000000000000000000000000000000000000000000000000000000000");
 
-        pchMessageStart[0] = 0xf9;
+        pchMessageStart[0] = 0x16;
         pchMessageStart[1] = 0x35;
-        pchMessageStart[2] = 0xc3;
-        pchMessageStart[3] = 0x95;
+        pchMessageStart[2] = 0xa2;
+        pchMessageStart[3] = 0xf6;
         vAlertPubKey = ParseHex("04517d8a699cb43d3938d7b24faaff7cda448ca4ea267723ba614784de661949bf632d6304316b244646dea079735b9a6fc4af804efb4752075b9fe2245e14e412");
-        nDefaultPort = 17672;
+        nDefaultPort = 20168;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1554124227, 1, 0x207fffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1561308319, 2, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         // calculate regression genesis block
         //consensus.hashGenesisBlock = uint256S("0x00");
@@ -500,8 +500,8 @@ public:
             std::cout << "blockhash: " << genesis.GetHash().ToString().c_str() << "\n";
             std::cout << "merklehash: "  << genesis.hashMerkleRoot.ToString().c_str() << "\n";
         }
-        assert(consensus.hashGenesisBlock == uint256S("0x6b2c8f9f17a7d890bc5ef3e1369847dab995198428f03b973e04998442432b1e"));
-        assert(genesis.hashMerkleRoot == uint256S("0xc608ec63d437019e8351b971ff470ef8a175d56da1946f355bd7703c8dbf179b"));
+        assert(consensus.hashGenesisBlock == uint256S("0x75ab67bbf5b77ceb1bc1efa139d3204cbc5c73975b6d38c3dce30e1b5617ba35"));
+        assert(genesis.hashMerkleRoot == uint256S("0x14f165adae3d37a09df224cf8323f546a3cc0946b06fd4428eed77fcc2dfd910"));
 
         devnetGenesis = FindDevNetGenesisBlock(consensus, genesis, 50 * COIN);
         consensus.hashDevnetGenesisBlock = devnetGenesis.GetHash();
@@ -510,10 +510,10 @@ public:
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("broadwayevo.org",  "devnet-seed.broadwayevo.org"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,65);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,66);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,50);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,51);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,193);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,178);
         // Testnet Broadway BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
         // Testnet Broadway BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
@@ -532,11 +532,11 @@ public:
         nPoolMaxTransactions = 3;
         nFulfilledRequestExpireTime = 5*60; // fulfilled requests expire in 5 minutes
 
-        strSporkAddress = "TMKN7G3cFb3cdp5UoaY1SDMXREJkTcZbeH";
+        strSporkAddress = "M8u6ztNcrJEuFb72PFtX15D6YMiGkToQmy";
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (      0, uint256S("0x6b2c8f9f17a7d890bc5ef3e1369847dab995198428f03b973e04998442432b1e"))
+            (      0, uint256S("0x75ab67bbf5b77ceb1bc1efa139d3204cbc5c73975b6d38c3dce30e1b5617ba35"))
             (      1, devnetGenesis.GetHash())
         };
 
@@ -612,7 +612,7 @@ public:
         nDefaultPort = 19994;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1554124227, 1, 0x207fffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1561308319, 2, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         // calculate regression genesis block
         //consensus.hashGenesisBlock = uint256S("0x00");
@@ -635,8 +635,8 @@ public:
             std::cout << "blockhash: " << genesis.GetHash().ToString().c_str() << "\n";
             std::cout << "merklehash: "  << genesis.hashMerkleRoot.ToString().c_str() << "\n";
         }
-        assert(consensus.hashGenesisBlock == uint256S("0x6b2c8f9f17a7d890bc5ef3e1369847dab995198428f03b973e04998442432b1e"));
-        assert(genesis.hashMerkleRoot == uint256S("0xc608ec63d437019e8351b971ff470ef8a175d56da1946f355bd7703c8dbf179b"));
+        assert(consensus.hashGenesisBlock == uint256S("0x75ab67bbf5b77ceb1bc1efa139d3204cbc5c73975b6d38c3dce30e1b5617ba35"));
+        assert(genesis.hashMerkleRoot == uint256S("0x14f165adae3d37a09df224cf8323f546a3cc0946b06fd4428eed77fcc2dfd910"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -650,12 +650,12 @@ public:
 
         nFulfilledRequestExpireTime = 5*60; // fulfilled requests expire in 5 minutes
 
-        // privKey: 7UaJ2QJyHbhU1pz2UzgDRXnfKq83wQqScm4J26Q1ubyxNoUBtaX
-        strSporkAddress = "TC5T5rMrBbArgbgE2EWCCTcgxHp1tkw53m";
+        // privKey: 6ynZ9QvRCDvKuZhyGg6CmyKfyRX8u46bmyhexTLQrSZijuUxrLd
+        strSporkAddress = "MEv9KsCeAsTaZLpyt5SNsX1RA3HgWSXVoT";
 
         checkpointData = (CCheckpointData){
             boost::assign::map_list_of
-            ( 0, uint256S("0x6b2c8f9f17a7d890bc5ef3e1369847dab995198428f03b973e04998442432b1e"))
+            ( 0, uint256S("0x75ab67bbf5b77ceb1bc1efa139d3204cbc5c73975b6d38c3dce30e1b5617ba35"))
         };
 
         chainTxData = ChainTxData{
@@ -665,11 +665,11 @@ public:
         };
 
         // Regtest Broadway addresses start with 'y'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,65);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,50);
         // Regtest Broadway script addresses start with '8' or '9'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,66);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,51);
         // Regtest private keys start with '9' or 'c' (Bitcoin defaults)
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,193);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,178);
         // Regtest Broadway BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
         // Regtest Broadway BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
